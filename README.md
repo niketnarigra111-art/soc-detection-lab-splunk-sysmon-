@@ -1,0 +1,1 @@
+# soc-detection-lab-splunk-sysmon-
