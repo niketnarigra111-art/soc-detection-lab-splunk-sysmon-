@@ -1,9 +1,19 @@
 # Detection Engineering & SOC Telemetry Home Lab
 
-An end-to-end cybersecurity laboratory built to simulate adversary tactics, capture endpoint telemetry using Microsoft Sysmon, and analyze process lineage and network artifacts inside Splunk Enterprise.
+An end-to-end cybersecurity home laboratory built using VirtualBox, Windows 10, Kali Linux, Sysmon, and Splunk Enterprise. This lab simulates real-world adversary behavior (reconnaissance, payload generation, command-and-control, post-exploitation) and captures endpoint telemetry using Microsoft Sysmon, and analyze process lineage and network artifacts inside Splunk Enterprise.
 
 ---
 
+## Key Technologies & Tools
+
+- **Hypervisor:** Oracle VM VirtualBox (v7.0+)
+- **Attacker Node:** Kali Linux (64-bit pre-built VM)
+- **Target Node:** Windows 10 Pro (x64)
+- **Endpoint Telemetry:** Microsoft Sysmon (System Monitor)
+- **SIEM / Log Analysis:** Splunk Enterprise & Splunk Add-on for Sysmon
+- **Offensive Tooling:** Nmap, MSFvenom, Metasploit Framework (`exploit/multi/handler`)
+
+---
 ## 🛠️ Lab Architecture & Network Topology
 
 Both machines reside on an isolated internal network (`project`) with no external internet routing during payload execution to ensure safe sandbox conditions.
