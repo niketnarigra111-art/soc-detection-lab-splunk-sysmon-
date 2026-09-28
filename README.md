@@ -31,26 +31,30 @@ Both machines reside on an isolated internal network (`project`) with no externa
 ### 1. Isolated VirtualBox Network Adapter Setup
 To prevent malicious network traffic from escaping to the local LAN, both VMs are attached to an isolated **Internal Network** named `project`.
 
-![VirtualBox Internal Network](screenshots/01_vbox_internal_network.png)
+<img width="1600" height="900" alt="19d977f4-2a90-4b2a-8b64-b34e1eae83c9" src="https://github.com/user-attachments/assets/8c3b66f6-ea1f-4380-8da2-39273c82419d" />
+
 
 ### 2. Attacker Node Setup (Kali Linux)
 - **Interface:** `eth0`
 - **Assigned IP:** `192.168.20.11/24`
 - **Method:** Statically defined in Network Manager.
 
-![Kali Static Network Configuration](screenshots/02_kali_network_config.png)
+<img width="1280" height="800" alt="cb3bde57-9f70-4ec4-b7eb-ca266ce1db68" src="https://github.com/user-attachments/assets/90edd4e9-dc0a-43d9-a90b-92593b796da3" />
+
 
 ### 3. Target Node Setup (Windows 10 Pro)
 - **Hostname:** `DESKTOP-JCKQ6MH`
 - **User Account:** `nik`
 - **Assigned IP:** `192.168.20.10/24`
 
-![Windows IPv4 GUI Configuration](screenshots/03_win10_ipv4_gui.png)
+<img width="1280" height="720" alt="05f88366-d04a-41cc-b383-2fd3c3b03e55" src="https://github.com/user-attachments/assets/a1dfd4de-edbf-4259-8140-5fb8bc6bcd9e" />
+
 
 ### 4. Connectivity Verification
 Verified static addressing via `ipconfig` and established round-trip ICMP connectivity by pinging the Kali Linux attacker host (`192.168.20.11`) with 0% packet loss.
 
-![Windows IP and Ping Test](screenshots/04_win10_ip_and_ping.png)
+<img width="1280" height="720" alt="43adf378-6186-45de-8ef9-491806fcd971" src="https://github.com/user-attachments/assets/2479efcd-a159-4dd6-b42c-9c57c4b15430" />
+
 
 ---
 
@@ -63,7 +67,9 @@ Executed an aggressive service scan skipping host discovery (`-Pn`):
 nmap -A -Pn 192.168.20.10
 ```
 
-![Nmap Reconnaissance Scan](screenshots/05_nmap_recon_scan.png)
+<img width="1280" height="800" alt="8871e8b9-65c3-4fe1-9e94-40e008d07059" src="https://github.com/user-attachments/assets/6707fa99-82b7-4e7f-b7a5-ac30b446b453" />
+
+
 
 **Open Services Identified:**
 - `135/tcp` (Microsoft Windows RPC)
@@ -96,7 +102,8 @@ exploit
 
 Upon victim execution, Meterpreter caught the incoming stage and spawned an interactive shell:
 
-![Metasploit Handler & Shell](screenshots/06_metasploit_handler_session.png)
+<img width="1280" height="800" alt="bbd07574-eb79-49bc-a870-26dd16581246" src="https://github.com/user-attachments/assets/125681da-3bf6-4d24-8bda-43ddf161087a" />
+
 
 ---
 
@@ -109,7 +116,8 @@ net localgroup administrators
 ipconfig
 ```
 
-![Post-Exploitation Host Discovery](screenshots/07_host_discovery_commands.png)
+<img width="1600" height="722" alt="446c8c68-a1ed-4305-b315-0b3072516581" src="https://github.com/user-attachments/assets/2765a4b7-1921-48dc-9868-384cd189b17d" />
+
 
 ---
 
@@ -126,7 +134,8 @@ renderXml = 1
 index = endpoint
 ```
 
-![Splunk Sysmon Ingestion](screenshots/08_splunk_sysmon_ingestion.png)
+<img width="1600" height="780" alt="be8edb84-d017-4601-ba35-9469ffccff26" src="https://github.com/user-attachments/assets/781b6be7-d52a-4b43-85b2-16b8b99034c2" />
+
 
 ---
 
@@ -140,7 +149,8 @@ index=endpoint EventCode=1 NOT ParentImage=*Splunk* ("resume.pdf*" OR "net*" OR 
 | sort _time
 ```
 
-![Splunk Process Lineage Table](screenshots/09_splunk_process_tree.png)
+<img width="1600" height="900" alt="17710ea8-065a-44fc-a601-dff768bbb9d0" src="https://github.com/user-attachments/assets/a0d37877-4743-4403-a266-861b0cec2efa" />
+
 
 #### Observed Process Tree Breakdown
 
