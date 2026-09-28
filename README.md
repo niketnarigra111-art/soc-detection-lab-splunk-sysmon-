@@ -198,3 +198,19 @@ index=endpoint EventCode=1 Image IN ("*\\net.exe", "*\\net1.exe", "*\\whoami.exe
 | stats count earliest(_time) as start latest(_time) as end values(CommandLine) by Computer, ParentProcessGuid
 | where count >= 2
 ```
+
+## Detection Engineering Takeaways
+
+1. **Masquerading Extensions:** Binaries with double extensions (e.g., `.pdf.exe`) highlight why `Hide extensions for known file types` should be disabled across enterprise fleet configurations.
+2. **Parent-Child Process Anomalies:** Executable files running from user download directories and spawning `cmd.exe` or `powershell.exe` represent high-fidelity alert candidates.
+3. **Discovery Commands:** Rapid successive executions of `net user`, `net localgroup`, and `ipconfig` by a non-system user often signal immediate post-compromise enumeration.
+
+---
+
+## References
+
+- [MyDFIR YouTube Series - Build a Basic Home Lab (1/3)](http://www.youtube.com/watch?v=kku0fVfksrk)
+- [MyDFIR YouTube Series - Build a Basic Home Lab (2/3)](http://www.youtube.com/watch?v=5iafC6vj7kM)
+- [MyDFIR YouTube Series - Build a Basic Home Lab (3/3)](http://www.youtube.com/watch?v=-8X7Ay4YCoA)
+- [Microsoft Sysmon Documentation](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)
+- [SwiftOnSecurity Sysmon Configuration](https://github.com/SwiftOnSecurity/sysmon-config)
